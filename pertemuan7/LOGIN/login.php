@@ -9,7 +9,6 @@ if (isset($_POST["submit"])){
     }else{
         // jika salah, tampilkan pesan kesalahan
         $error = true;
-
     }
 }
 ?>
