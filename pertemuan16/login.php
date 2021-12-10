@@ -1,4 +1,9 @@
 <?php 
+    session_start();
+    if(isset($_SESSION["login"])){
+        header("Location: index.php");
+        exit;
+    }
     require 'fungsi.php';
 
     if(isset($_POST["login"])){
@@ -13,6 +18,9 @@
             // check password 
             $row = mysqli_fetch_assoc($result);
             if (password_verify($password,$row["password"])){
+                // set session 
+                $_SESSION["login"] = true;
+
                 header("location: index.php");
                 exit;
             }
@@ -44,7 +52,7 @@
     <?php endif; ?>
     <form action="" method="post">
         <ul>
-            <li> 
+            <li>
                 <label for="username">username :</label>
                 <input type="text" name="username" id="username">
             </li>
